@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="App">
     <router-view></router-view>
   </div>
 </template>
@@ -9,5 +9,5 @@ export default {}
 </script>
 
 <style lang="less" scoped>
-@import './assets/css/base.css';
+// @import './assets/css/base.css';
 </style>
