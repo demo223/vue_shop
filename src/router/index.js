@@ -12,10 +12,20 @@ VueRouter.prototype.push = function push(location) {
 
 const Login = () => import('../components/Login.vue')
 const Home = () => import('../components/Home.vue')
+const User = () => import('../components/user/User.vue')
+const Rights = () => import('../components/Rights.vue')
 const routes = [
   { path: '/', redirect: '/login' },
   { path: '/login', component: Login },
-  { path: '/home', component: Home },
+  {
+    path: '/home',
+    component: Home,
+    children: [
+      /* 子组件 */
+      { path: '', component: User } /* 默认子路由 */,
+      { path: '/rights', component: Rights },
+    ],
+  },
 ]
 
 const router = new VueRouter({
