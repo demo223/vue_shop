@@ -7,20 +7,10 @@
         <img src="../assets/img/登录头像.png" alt="登录头像" />
       </div>
       <!-- 登录表单 -->
-      <el-form
-        :model="loginForm"
-        :rules="rules"
-        ref="loginForm"
-        label-width="auto"
-        class="login_form"
-      >
+      <el-form :model="loginForm" :rules="rules" ref="loginForm" label-width="auto" class="login_form">
         <!-- 用户名 -->
         <el-form-item label="用户名" prop="username">
-          <el-input
-            v-model="loginForm.username"
-            placeholder="用户名"
-            prefix-icon="el-icon-user"
-          ></el-input>
+          <el-input v-model="loginForm.username" placeholder="用户名" prefix-icon="el-icon-user"></el-input>
         </el-form-item>
         <!-- 密码 -->
         <el-form-item label="密码" prop="password">
@@ -80,27 +70,21 @@ export default {
     login() {
       //点击登录的时候先调用validate方法验证表单内容是否有误
       this.$refs.loginForm.validate(async (valid) => {
-        console.log(this.loginForm)
-        console.log(valid) /* false */
+        // console.log(this.loginForm)
+        // console.log(valid) /* false */
         //如果valid参数为true则验证通过
         if (!valid) {
           return
         }
         //发送请求进行登录
-        const { data: res } = await this.$http.post(
-          'login',
-          this.loginForm /* this.loginForm为请求头信息 */
-        )
-        console.log(res) /* 请求数据 */
+        const { data: res } = await this.$http.post('login', this.loginForm /* this.loginForm为请求头信息 */)
+        // console.log(res) /* 请求数据 */
         if (res.meta.status !== 200) {
           return this.$message.error('登录失败，请重新登录！' + res.meta.msg)
         }
         this.$message.success('登录成功！')
         // 保存token信息
-        window.sessionStorage.setItem(
-          'token',
-          res.data.token
-        ) /* 从接口中拿到token信息，并保存到本地storage中 */
+        window.sessionStorage.setItem('token', res.data.token) /* 从接口中拿到token信息，并保存到本地storage中 */
         /* 跳转到home界面 */
         this.$router.push('/home')
       })

@@ -12,7 +12,7 @@ VueRouter.prototype.push = function push(location) {
 
 const Login = () => import('../components/Login.vue')
 const Home = () => import('../components/Home.vue')
-const User = () => import('../components/user/User.vue')
+const Users = () => import('../components/user/Users.vue')
 const Rights = () => import('../components/Rights.vue')
 const routes = [
   { path: '/', redirect: '/login' },
@@ -22,8 +22,8 @@ const routes = [
     component: Home,
     children: [
       /* 子组件 */
-      { path: '', component: User } /* 默认子路由 */,
-      { path: '/rights', component: Rights },
+      { path: 'users', component: Users },
+      { path: 'rights', component: Rights },
     ],
   },
 ]
@@ -38,9 +38,7 @@ router.beforeEach((to, from, next) => {
     return next()
   }
   // 获取token
-  const tokenStr = window.sessionStorage.getItem(
-    'token'
-  ) /* 拿到浏览器中的token信息 */
+  const tokenStr = window.sessionStorage.getItem('token') /* 拿到浏览器中的token信息 */
   if (!tokenStr) {
     /* token信息不存在 */
     return next('/login')

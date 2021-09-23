@@ -5,3 +5,8 @@ html,body,#app{
     margin: 0;
     padding: 0; 
 }
+
+/* 解决导航栏右边存在1px的右边距问题 */
+.el-menu {
+  border-right: 0;
+}

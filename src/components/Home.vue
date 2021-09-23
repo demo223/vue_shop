@@ -30,9 +30,9 @@
               <!-- router开启路由模式 -->
               <el-menu
                 :default-active="$route.path"
-                background-color="rgb(48, 65, 86)"
-                text-color="rgb(191, 203, 217)"
-                active-text-color="red"
+                background-color="#304156"
+                text-color="#BFCBD9"
+                active-text-color="#409EFF"
                 router
               >
                 <!-- 一级菜单 -->
@@ -48,7 +48,7 @@
                     </span>
                   </template>
                   <!-- 二级菜单 -->
-                  <el-menu-item v-for="subItem in item.children" :key="subItem.id" :index="'/' + subItem.path">
+                  <el-menu-item v-for="subItem in item.children" :key="subItem.id" :index="'/home/' + subItem.path">
                     <!-- 二级导航栏文字 -->
                     <template slot="title">
                       <!-- 导航栏文字 -->
@@ -109,7 +109,7 @@ export default {
     async getMenuList() {
       // 发送请求获取左侧菜单栏导航数据
       const { data: res } = await this.$http.get('menus')
-      console.log(res)
+      // console.log(res)
       if (res.meta.status !== 200) {
         /* 获取失败 */
         return this.$message.error(res.meta.msg)
@@ -122,16 +122,12 @@ export default {
 </script>
 
 <style lang="less" scoped>
-// 解决导航栏右边存在1px的右边距问题
-.el-menu {
-  border-right: 0;
-}
 .home-container {
   background-color: aquamarine;
   .home-el-header {
     text-align: center;
     line-height: 60px;
-    background-color: gold;
+    background-color: white;
     .headPicture {
       line-height: 0;
       padding: 10px 0;
@@ -141,7 +137,7 @@ export default {
     background-color: salmon;
   }
   .home-el-main {
-    background-color: skyblue;
+    background-color: gray;
   }
 }
 </style>
